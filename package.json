@@ -1,0 +1,19 @@
+{
+  "name": "afoco",
+  "packageManager": "yarn@3.6.0",
+  "private": true,
+  "workspaces": [
+    "client",
+    "cms",
+    "types"
+  ],
+  "scripts": {
+    "client": "yarn workspace @afoco/client",
+    "cms": "yarn workspace @afoco/cms",
+    "types": "yarn workspace @afoco/types",
+    "heroku-postbuild": "./heroku.build"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
