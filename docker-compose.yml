@@ -14,7 +14,7 @@ services:
   cms:
     build:
       context: .
-      dockerfile: Dockerfile.cms
+      dockerfile: cms/Dockerfile
     ports:
       - '1337:1337'
     env_file:
@@ -23,6 +23,7 @@ services:
       - DATABASE_CLIENT=postgres
       - DATABASE_SSL=false
       - DATABASE_URL=postgres://postgres:postgres@db:5432/cms
+      - NODE_ENV=${NODE_ENV:-development}
     links:
       - db
     depends_on:
@@ -32,13 +33,14 @@ services:
   client:
     build:
       context: .
-      dockerfile: Dockerfile.client
+      dockerfile: client/Dockerfile
     ports:
       - '3000:3000'
     env_file:
       - ./client/.env.local
     environment:
       - NEXT_PUBLIC_API_URL=http://localhost:1337/api
+      - NODE_ENV=${NODE_ENV:-development}
     links:
       - cms
     volumes:

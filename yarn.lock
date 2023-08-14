@@ -5,6 +5,96 @@ __metadata:
   version: 6
   cacheKey: 8
 
+"@afoco/client@workspace:client":
+  version: 0.0.0-use.local
+  resolution: "@afoco/client@workspace:client"
+  dependencies:
+    "@deck.gl/geo-layers": 8.9.19
+    "@deck.gl/json": 8.9.20
+    "@deck.gl/layers": 8.9.19
+    "@deck.gl/mapbox": 8.9.19
+    "@dnd-kit/core": 6.0.5
+    "@dnd-kit/modifiers": 6.0.0
+    "@dnd-kit/sortable": 7.0.1
+    "@dnd-kit/utilities": 3.2.0
+    "@hookform/resolvers": ^3.1.1
+    "@radix-ui/react-accordion": ^1.1.2
+    "@radix-ui/react-checkbox": ^1.0.4
+    "@radix-ui/react-dialog": ^1.0.4
+    "@radix-ui/react-label": ^2.0.2
+    "@radix-ui/react-popover": ^1.0.6
+    "@radix-ui/react-radio-group": ^1.1.3
+    "@radix-ui/react-select": ^1.2.2
+    "@radix-ui/react-slider": ^1.1.2
+    "@radix-ui/react-slot": ^1.0.2
+    "@radix-ui/react-switch": ^1.0.3
+    "@radix-ui/react-toast": ^1.1.4
+    "@radix-ui/react-tooltip": ^1.0.6
+    "@recoiljs/refine": ^0.1.1
+    "@t3-oss/env-nextjs": 0.4.1
+    "@tanstack/react-query": ^4.29.18
+    "@types/d3-array": 3.0.5
+    "@types/node": 20.3.1
+    "@types/react": 18.2.12
+    "@types/react-dom": 18.2.5
+    "@typescript-eslint/eslint-plugin": ^5.60.1
+    "@typescript-eslint/parser": ^5.60.1
+    autoprefixer: 10.4.14
+    axios: ^1.4.0
+    class-variance-authority: ^0.6.0
+    clsx: ^1.2.1
+    d3-array: 3.2.4
+    deck.gl: 8.9.19
+    eslint: 8.42.0
+    eslint-config-next: 13.4.5
+    eslint-config-prettier: ^8.8.0
+    eslint-plugin-import: 2.27.5
+    eslint-plugin-prettier: ^4.2.1
+    lucide-react: ^0.252.0
+    mapbox-gl: 2.15.0
+    next: 13.4.5
+    postcss: 8.4.24
+    prettier: ^2.8.8
+    prettier-plugin-tailwindcss: ^0.3.0
+    react: 18.2.0
+    react-dom: 18.2.0
+    react-hook-form: ^7.45.0
+    react-map-gl: 7.0.25
+    recoil: ^0.7.7
+    recoil-sync: ^0.2.0
+    rooks: 7.14.1
+    tailwind-merge: ^1.13.2
+    tailwindcss: 3.3.2
+    tailwindcss-animate: ^1.0.6
+    typescript: 5.1.3
+    zod: ^3.21.4
+  languageName: unknown
+  linkType: soft
+
+"@afoco/cms@workspace:cms":
+  version: 0.0.0-use.local
+  resolution: "@afoco/cms@workspace:cms"
+  dependencies:
+    "@strapi/plugin-documentation": 4.11.2
+    "@strapi/plugin-i18n": 4.11.2
+    "@strapi/plugin-users-permissions": 4.11.2
+    "@strapi/strapi": 4.11.2
+    pg: 8.8.0
+    strapi-plugin-import-export-entries: ^1.21.0
+    typescript: 5.1.3
+  languageName: unknown
+  linkType: soft
+
+"@afoco/types@workspace:types":
+  version: 0.0.0-use.local
+  resolution: "@afoco/types@workspace:types"
+  dependencies:
+    orval: ^6.16.0
+    prettier: ^2.8.8
+    typescript: 5.1.3
+  languageName: unknown
+  linkType: soft
+
 "@alloc/quick-lru@npm:^5.2.0":
   version: 5.2.0
   resolution: "@alloc/quick-lru@npm:5.2.0"
@@ -4590,96 +4680,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@serverless-app-scaffold/client@workspace:client":
-  version: 0.0.0-use.local
-  resolution: "@serverless-app-scaffold/client@workspace:client"
-  dependencies:
-    "@deck.gl/geo-layers": 8.9.19
-    "@deck.gl/json": 8.9.20
-    "@deck.gl/layers": 8.9.19
-    "@deck.gl/mapbox": 8.9.19
-    "@dnd-kit/core": 6.0.5
-    "@dnd-kit/modifiers": 6.0.0
-    "@dnd-kit/sortable": 7.0.1
-    "@dnd-kit/utilities": 3.2.0
-    "@hookform/resolvers": ^3.1.1
-    "@radix-ui/react-accordion": ^1.1.2
-    "@radix-ui/react-checkbox": ^1.0.4
-    "@radix-ui/react-dialog": ^1.0.4
-    "@radix-ui/react-label": ^2.0.2
-    "@radix-ui/react-popover": ^1.0.6
-    "@radix-ui/react-radio-group": ^1.1.3
-    "@radix-ui/react-select": ^1.2.2
-    "@radix-ui/react-slider": ^1.1.2
-    "@radix-ui/react-slot": ^1.0.2
-    "@radix-ui/react-switch": ^1.0.3
-    "@radix-ui/react-toast": ^1.1.4
-    "@radix-ui/react-tooltip": ^1.0.6
-    "@recoiljs/refine": ^0.1.1
-    "@t3-oss/env-nextjs": 0.4.1
-    "@tanstack/react-query": ^4.29.18
-    "@types/d3-array": 3.0.5
-    "@types/node": 20.3.1
-    "@types/react": 18.2.12
-    "@types/react-dom": 18.2.5
-    "@typescript-eslint/eslint-plugin": ^5.60.1
-    "@typescript-eslint/parser": ^5.60.1
-    autoprefixer: 10.4.14
-    axios: ^1.4.0
-    class-variance-authority: ^0.6.0
-    clsx: ^1.2.1
-    d3-array: 3.2.4
-    deck.gl: 8.9.19
-    eslint: 8.42.0
-    eslint-config-next: 13.4.5
-    eslint-config-prettier: ^8.8.0
-    eslint-plugin-import: 2.27.5
-    eslint-plugin-prettier: ^4.2.1
-    lucide-react: ^0.252.0
-    mapbox-gl: 2.15.0
-    next: 13.4.5
-    postcss: 8.4.24
-    prettier: ^2.8.8
-    prettier-plugin-tailwindcss: ^0.3.0
-    react: 18.2.0
-    react-dom: 18.2.0
-    react-hook-form: ^7.45.0
-    react-map-gl: 7.0.25
-    recoil: ^0.7.7
-    recoil-sync: ^0.2.0
-    rooks: 7.14.1
-    tailwind-merge: ^1.13.2
-    tailwindcss: 3.3.2
-    tailwindcss-animate: ^1.0.6
-    typescript: 5.1.3
-    zod: ^3.21.4
-  languageName: unknown
-  linkType: soft
-
-"@serverless-app-scaffold/cms@workspace:cms":
-  version: 0.0.0-use.local
-  resolution: "@serverless-app-scaffold/cms@workspace:cms"
-  dependencies:
-    "@strapi/plugin-documentation": 4.11.2
-    "@strapi/plugin-i18n": 4.11.2
-    "@strapi/plugin-users-permissions": 4.11.2
-    "@strapi/strapi": 4.11.2
-    pg: 8.8.0
-    strapi-plugin-import-export-entries: ^1.21.0
-    typescript: 5.1.3
-  languageName: unknown
-  linkType: soft
-
-"@serverless-app-scaffold/types@workspace:types":
-  version: 0.0.0-use.local
-  resolution: "@serverless-app-scaffold/types@workspace:types"
-  dependencies:
-    orval: ^6.16.0
-    prettier: ^2.8.8
-    typescript: 5.1.3
-  languageName: unknown
-  linkType: soft
-
 "@sideway/address@npm:^4.1.3":
   version: 4.1.4
   resolution: "@sideway/address@npm:4.1.4"
@@ -6871,6 +6871,12 @@ __metadata:
   checksum: 389051bc6a3a44082a6e7d6256c15e2aba55ae4799f1eed620e34f1c77ddf4dfe9baacc41c6ad25eb5f795195ff8a506dc07ef9e4bc033ee1ab3882edfed396d
   languageName: node
   linkType: hard
+
+"afoco@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "afoco@workspace:."
+  languageName: unknown
+  linkType: soft
 
 "agent-base@npm:6, agent-base@npm:^6.0.0, agent-base@npm:^6.0.2":
   version: 6.0.2
@@ -18326,12 +18332,6 @@ __metadata:
   checksum: af57fc13be40d90a12562e98c0b7855cf6e8bd4c107fe9a45c212bf023058d54a1871b1c89511c3958f70626fff47faeb795f5d83f8cf88514dbaeb2b724464d
   languageName: node
   linkType: hard
-
-"serverless-app-scaffold@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "serverless-app-scaffold@workspace:."
-  languageName: unknown
-  linkType: soft
 
 "set-blocking@npm:^2.0.0":
   version: 2.0.0

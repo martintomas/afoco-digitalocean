@@ -1,0 +1,11 @@
+version: '3.3'
+
+services:
+  cms:
+    image: 728416847572.dkr.ecr.ap-northeast-2.amazonaws.com/afoco-staging-cms:cms-8a1f05e219c13f5830a0366172257f44296e7d6a
+    ports:
+      - '1337:1337'
+  client:
+    image: 728416847572.dkr.ecr.ap-northeast-2.amazonaws.com/afoco-staging-client:client-8c3c1689c4362a4c24a8af9d575f5171a247c927
+    ports:
+      - '3000:3000'

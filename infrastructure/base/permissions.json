@@ -1,0 +1,30 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "dynamodb:PutItem",
+                "dynamodb:DeleteItem",
+                "dynamodb:GetItem",
+                "s3:ListBucket",
+                "s3:DeleteObject",
+                "ecr:CreateRepository",
+                "ecr:DescribeRepositories",
+                "ecr:ListTagsForResource",
+                "ecr:DeleteRepository",
+                "kms:RetireGrant"
+            ],
+            "Resource": [
+                "arn:aws:s3:::afoco-tfstate/*",
+                "arn:aws:s3:::afoco-tfstate",
+                "arn:aws:dynamodb:{region}:{accountId}:table/afoco-tfstate-lock",
+                "arn:aws:ecr:{region}:{accountId}:*",
+                "arn:aws:kms:::*"
+            ]
+        }
+    ]
+}

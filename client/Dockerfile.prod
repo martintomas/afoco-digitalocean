@@ -1,0 +1,42 @@
+# Build all the things
+FROM node:18.15.0-bullseye-slim AS build
+RUN apt-get update -y && \
+    apt-get upgrade -y && \
+    apt-get install -y libc6  && \
+    apt-get clean
+ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED 1
+
+WORKDIR /app
+COPY .yarn ./.yarn
+COPY package.json .yarnrc.yml yarn.lock .prettierrc.js ./
+
+WORKDIR /app/client
+COPY ./client/package.json ./
+RUN yarn install
+
+COPY ./client .
+
+RUN yarn build
+
+# Copy only the built files into the final image
+FROM node:18.15.0-bullseye-slim AS runner
+ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED 1
+
+WORKDIR /app
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+COPY --from=build --chown=nextjs:nodejs /app/client/.next ./.next
+COPY --from=build --chown=nextjs:nodejs /app/client/entrypoint.sh ./entrypoint.sh
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/client/package.json ./package.json
+
+USER nextjs
+
+EXPOSE 3000
+ENV PORT 3000
+
+ENTRYPOINT ["/app/entrypoint.sh"]
