@@ -28,18 +28,11 @@ jobs:
           echo "##[set-output name=branch-upper;]$(echo ${GITHUB_REF#refs/heads/} | tr a-z A-Z )"
         id: extract_branch
 
-      - name: Filter changes
-        uses: dorny/paths-filter@v2
-        id: changes
-        with:
-          filters: |
-            client:
-              - 'client/**'
-              - '.github/workflows/*'
-
       - name: Copy env variables to docker
+        env:
+          ENVIRONMENT: ${{ steps.extract_branch.outputs.branch == 'main' && 'PROD' || 'STAGE' }}
         run: |
-          echo "${{ secrets.CLIENT_STAGE_ENV_FILE }}" > client/.env.local
+          echo "${{ secrets[format('CLIENT_{0}_ENV_FILE', env.ENVIRONMENT)] }}" > client/.env.local
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -53,7 +46,6 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: Build, tag, and push Client image to Amazon ECR
-        if: steps.changes.outputs.client == 'true'
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: afoco-${{ steps.extract_branch.outputs.branch == 'main' && 'production' || 'staging' }}-client
@@ -77,18 +69,11 @@ jobs:
           echo "##[set-output name=branch-upper;]$(echo ${GITHUB_REF#refs/heads/} | tr a-z A-Z )"
         id: extract_branch
 
-      - name: Filter changes
-        uses: dorny/paths-filter@v2
-        id: changes
-        with:
-          filters: |
-            cms:
-              - 'cms/**'
-              - '.github/workflows/*'
-
       - name: Copy env variables to docker
+        env:
+          ENVIRONMENT: ${{ steps.extract_branch.outputs.branch == 'main' && 'PROD' || 'STAGE' }}
         run: |
-          echo "${{ secrets.CMS_STAGE_ENV_FILE }}" > cms/.env
+          echo "${{ secrets[format('CMS_{0}_ENV_FILE', env.ENVIRONMENT)] }}" > cms/.env
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -102,7 +87,6 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: Build, tag, and push CMS image to Amazon ECR
-        if: steps.changes.outputs.cms == 'true'
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: afoco-${{ steps.extract_branch.outputs.branch == 'main' && 'production' || 'staging' }}-cms
@@ -128,9 +112,11 @@ jobs:
         id: extract_branch
 
       - name: Copy env variables to app folders
+        env:
+          ENVIRONMENT: ${{ steps.extract_branch.outputs.branch == 'main' && 'PROD' || 'STAGE' }}
         run: |
-          echo "${{ secrets.CLIENT_STAGE_ENV_FILE }}" > client/.env.local
-          echo "${{ secrets.CMS_STAGE_ENV_FILE }}" > cms/.env
+          echo "${{ secrets[format('CLIENT_{0}_ENV_FILE', env.ENVIRONMENT)] }}" > client/.env.local
+          echo "${{ secrets[format('CMS_{0}_ENV_FILE', env.ENVIRONMENT)] }}" > cms/.env
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
