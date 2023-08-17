@@ -129,22 +129,21 @@ locals {
       name      = "DeleteOnTerminate"
       value     = "false"
     },
-    # NEEDS UNCOMMENTING ONCE CERT VALIDATED
-    # {
-    #   namespace = "aws:elbv2:listener:443"
-    #   name      = "ListenerEnabled"
-    #   value     = var.acm_certificate.arn == "" ? "false" : "true"
-    # },
-    # {
-    #   namespace = "aws:elbv2:listener:443"
-    #   name      = "Protocol"
-    #   value     = "HTTPS"
-    # },
-    # {
-    #   namespace = "aws:elbv2:listener:443"
-    #   name      = "SSLCertificateArns"
-    #   value     = var.acm_certificate.arn
-    # }
+    {
+      namespace = "aws:elbv2:listener:443"
+      name      = "ListenerEnabled"
+      value     = var.acm_certificate.arn == "" ? "false" : "true"
+    },
+    {
+      namespace = "aws:elbv2:listener:443"
+      name      = "Protocol"
+      value     = "HTTPS"
+    },
+    {
+      namespace = "aws:elbv2:listener:443"
+      name      = "SSLCertificateArns"
+      value     = var.acm_certificate.arn
+    }
   ]
 }
 
@@ -167,29 +166,28 @@ resource "aws_elastic_beanstalk_environment" "application_environment" {
   }
 }
 
-# NEEDS UNCOMMENTING ONCE CERT VALIDATED
-# data "aws_lb_listener" "http_listener" {
-#   load_balancer_arn = aws_elastic_beanstalk_environment.application_environment.load_balancers[0]
-#   port              = 80
-# }
+data "aws_lb_listener" "http_listener" {
+  load_balancer_arn = aws_elastic_beanstalk_environment.application_environment.load_balancers[0]
+  port              = 80
+}
 
-# resource "aws_lb_listener_rule" "redirect_http_to_https" {
-#   listener_arn = data.aws_lb_listener.http_listener.arn
-#   priority     = 1
+resource "aws_lb_listener_rule" "redirect_http_to_https" {
+  listener_arn = data.aws_lb_listener.http_listener.arn
+  priority     = 1
 
-#   action {
-#     type = "redirect"
+  action {
+    type = "redirect"
 
-#     redirect {
-#       port        = "443"
-#       protocol    = "HTTPS"
-#       status_code = "HTTP_301"
-#     }
-#   }
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
+  }
 
-#   condition {
-#     path_pattern {
-#       values = ["/*"]
-#     }
-#   }
-# }
+  condition {
+    path_pattern {
+      values = ["/*"]
+    }
+  }
+}
