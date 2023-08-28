@@ -119,7 +119,7 @@ jobs:
                     "image":{
                       "registry_type": "DOCR",
                       "repository": "${{ env.IMAGE_NAME_CLIENT }}",
-                      "tag": "7139bba0c7af6d50a054c43742527bbcd7999351"
+                      "tag": "${{ github.sha }}"
                     }
                   },
                   {
@@ -127,7 +127,7 @@ jobs:
                     "image":{
                       "registry_type": "DOCR",
                       "repository": "${{ env.IMAGE_NAME_CMS }}",
-                      "tag": "7139bba0c7af6d50a054c43742527bbcd7999351"
+                      "tag": "${{ github.sha }}"
                     }
                   }
                 ]'
