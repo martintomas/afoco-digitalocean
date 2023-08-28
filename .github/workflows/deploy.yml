@@ -6,6 +6,7 @@ on:
     branches:
       - main
       - staging
+      - infrastructure
     paths:
       - 'client/**'
       - 'cms/**'
@@ -17,7 +18,7 @@ env:
 
 jobs:
   build_client_image:
-    name: Build Client image and push to Amazon ECR
+    name: Build Client image and push to DO Container Registry
     runs-on: ubuntu-22.04
 
     steps:
