@@ -118,7 +118,7 @@ jobs:
                       "registry_type": "DOCR",
                       "repository": "${{ env.IMAGE_NAME_CLIENT }}",
                       "tag": "dff313750a6b1118876390796b7b2437f46a8030"
-                    },
+                    }
                   },
                   {
                     "name": "${{ env.PROJECT_NAME }}-cms",
@@ -126,6 +126,6 @@ jobs:
                       "registry_type": "DOCR",
                       "repository": "${{ env.IMAGE_NAME_CMS }}",
                       "tag": "dff313750a6b1118876390796b7b2437f46a8030"
-                    },
+                    }
                   }
                 ]'
