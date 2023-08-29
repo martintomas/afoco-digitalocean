@@ -14,7 +14,7 @@ on:
 
 env:
   PROJECT_NAME: "afoco"
-  IMAGE_REGISTRY: "registry.digitalocean.com/afoco"
+  IMAGE_REGISTRY: "registry.digitalocean.com/martintomas"
 
 jobs:
   build_client_image:
