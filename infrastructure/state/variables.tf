@@ -1,11 +1,21 @@
-variable "aws_region" {
+variable "do_region" {
   type        = string
-  description = "AWS region"
+  description = "DigitalOcean Region"
 }
 
-variable "allowed_account_id" {
+variable "do_token" {
   type        = string
-  description = "AWS account id"
+  description = "DigitalOcean Token"
+}
+
+variable "do_spaces_client_id" {
+  type        = string
+  description = "DigitalOcean Spaces Client ID"
+}
+
+variable "do_spaces_secret_key" {
+  type        = string
+  description = "DigitalOcean Spaces Secret Key"
 }
 
 variable "project_name" {

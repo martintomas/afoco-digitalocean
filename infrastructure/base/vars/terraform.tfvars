@@ -1,13 +1,12 @@
-aws_region         = "ap-northeast-2"
-allowed_account_id = "AWS ACCOUNT ID"
-project            = "afoco"
+do_region               = "fra1"
+do_token                = "DO TOKEN"
+do_spaces_client_id     = "DO_SPACES_CLIENT_ID"
+do_spaces_secret_key    = "DO_SPACES_SECRET_KEY"
+project_name            = "afoco"
+container_registry_name = "afoco"
+postgres_size           = "db-s-1vcpu-1gb"
+postgres_db_name        = "afoco"
+do_app_instance         = "basic-xs"
+do_app_instance_count   = 1
+do_app_image_tag        = "DOCKER IMAGE TAG"
 
-# domains managed externally
-production_domain = "climation.afocosec.org"
-staging_domain    = "climation-staging.afocosec.org"
-
-beanstalk_platform = "64bit Amazon Linux 2 v3.6.0 running Docker"
-beanstalk_tier     = "WebServer"
-ec2_instance_type  = "t3a.small"
-rds_engine_version = "15.3"
-rds_instance_class = "db.t3.micro"

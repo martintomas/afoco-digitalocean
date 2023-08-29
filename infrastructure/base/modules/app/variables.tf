@@ -19,17 +19,6 @@ variable "do_app_instance" {
   default     = "basic-xs"
 }
 
-variable "postgres_size" {
-  type        = string
-  description = "DigitalOcean PostgreSQL size"
-  default     = "db-s-1vcpu-1gb"
-}
-
-variable "postgres_db_name" {
-  type        = string
-  description = "Name of PostgreSQL database"
-}
-
 variable "do_app_instance_count" {
   type        = number
   description = "Number of instances to create"

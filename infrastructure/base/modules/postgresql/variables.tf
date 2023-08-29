@@ -1,76 +1,42 @@
-########################
-## Variables
-########################
-
-variable "project" {
+variable "do_region" {
   type        = string
-  description = "Project name, used for naming resources"
+  description = "DigitalOcean Region"
+}
+
+variable "project_name" {
+  type        = string
+  description = "Short name of the project, will be used to prefix created resources"
 }
 
 variable "environment" {
   type        = string
-  description = "The name of the environment this server hosts"
+  description = "Name of the environment, will be used to prefix created resources"
 }
 
-variable "vpc_id" {
+variable "postgres_size" {
   type        = string
-  description = "The ID of the VPC that the RDS cluster will be created in"
+  description = "DigitalOcean PostgreSQL size"
+  default     = "db-s-1vcpu-1gb"
 }
 
-variable "subnet_ids" {
-  type        = list(string)
-  description = "The ID's of the VPC subnets that the RDS cluster instances will be created in"
-}
-
-variable "rds_user_name" {
+variable "postgres_db_name" {
   type        = string
-  description = "RDS master user name"
+  description = "Name of PostgreSQL database"
 }
 
-variable "rds_backup_retention_period" {
+variable "postgres_version" {
+  type        = string
+  description = "PostgreSQL version"
+  default     = "15"
+}
+
+variable "postgres_node_count" {
   type        = number
-  description = "Retention period for backup files, in days"
+  description = "Number of PostgreSQL nodes"
+  default     = 1
 }
 
-variable "tags" {
-  type        = map(string)
-  description = "Tags to add to resources"
-}
-
-variable "log_retention_period" {
-  type        = number
-  description = "Number of days to retain logs in Cloud Watch"
-}
-
-variable "rds_engine_version" {
+variable "app_id" {
   type        = string
-  description = "RDS Database engine version"
-}
-
-variable "rds_instance_count" {
-  type        = number
-  description = "Number of permanent RDS instances"
-}
-
-variable "rds_instance_class" {
-  type        = string
-  description = "RDS instance type class"
-}
-
-variable "rds_port" {
-  type        = string
-  description = "Port to access RDS database"
-}
-
-variable "vpc_cidr_block" {
-  type        = string
-  description = "CIDR block of VPC"
-}
-
-variable "availability_zones" {
-  type = list(any)
-}
-
-variable "database_name" {
-  type = string
+  description = "DigitalOcean App ID"
 }

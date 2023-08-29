@@ -1,53 +1,29 @@
 terraform {
   required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
+    digitalocean = {
+      source = "digitalocean/digitalocean"
+      version = "~> 2.0"
     }
   }
 }
 
-provider "aws" {
-  region = var.aws_region
+provider "digitalocean" {
+  token = var.do_token
+  spaces_access_id = var.do_spaces_client_id
+  spaces_secret_key = var.do_spaces_secret_key
 }
 
-resource "aws_s3_bucket" "state" {
-  bucket = "${var.project_name}-terraform-state"
+resource "digitalocean_project" "terraform_state" {
+  name = var.project_name
 }
 
-resource "aws_s3_bucket_ownership_controls" "state" {
-  bucket = aws_s3_bucket.state.id
-
-  rule {
-    object_ownership = "BucketOwnerEnforced"
-  }
+resource "digitalocean_spaces_bucket" "terraform_state" {
+  name = "${var.project_name}-terraform-state"
+  region = var.do_region
+  acl = "private"
 }
 
-resource "aws_s3_bucket_versioning" "state" {
-  bucket = aws_s3_bucket.state.id
-  versioning_configuration {
-    status = "Enabled"
-  }
-}
-
-resource "aws_s3_bucket_server_side_encryption_configuration" "state" {
-  bucket = aws_s3_bucket.state.id
-
-  rule {
-    apply_server_side_encryption_by_default {
-      sse_algorithm = "AES256"
-    }
-  }
-}
-
-resource "aws_dynamodb_table" "lock" {
-  name           = "${var.project_name}-terraform-state-lock"
-  read_capacity  = 1
-  write_capacity = 1
-  hash_key       = "LockID"
-
-  attribute {
-    name = "LockID"
-    type = "S"
-  }
+resource "digitalocean_project_resources" "terraform_state" {
+  project = digitalocean_project.terraform_state.id
+  resources = [digitalocean_spaces_bucket.terraform_state.urn]
 }
