@@ -11,10 +11,21 @@ terraform {
   }
 }
 
+data "digitalocean_project" "project" {
+  name = var.project_name
+}
+
 resource "digitalocean_app" "app" {
   spec {
     name   = "${var.project_name}-${var.environment}"
     region = var.do_region
+
+    alert {
+      rule = "DEPLOYMENT_FAILED"
+    }
+    alert {
+      rule = "DOMAIN_FAILED"
+    }
 
     service {
       name               = "${var.project_name}-${var.environment}-client"
@@ -50,6 +61,31 @@ resource "digitalocean_app" "app" {
         path                 = "/admin"
         preserve_path_prefix = true
       }
+      routes {
+        path                 = "/api"
+        preserve_path_prefix = true
+      }
+      routes {
+        path                 = "/content-manager"
+        preserve_path_prefix = true
+      }
+      routes {
+        path                 = "/documentation"
+        preserve_path_prefix = true
+      }
+      routes {
+        path                 = "/i18n"
+        preserve_path_prefix = true
+      }
+      routes {
+        path                 = "/plugins"
+        preserve_path_prefix = true
+      }
     }
   }
+}
+
+resource "digitalocean_project_resources" "app" {
+  project = data.digitalocean_project.project.id
+  resources = [digitalocean_app.app.urn]
 }

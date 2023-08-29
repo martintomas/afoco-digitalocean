@@ -1,78 +1,56 @@
-variable "aws_region" {
+variable "do_region" {
   type        = string
-  description = "AWS region"
-  default     = "ap-northeast-2"
+  description = "DigitalOcean Region"
 }
 
-variable "allowed_account_id" {
+variable "do_token" {
   type        = string
-  description = "AWS account id"
+  description = "DigitalOcean Token"
 }
 
-variable "project" {
+variable "do_spaces_client_id" {
+  type        = string
+  description = "DigitalOcean Spaces Client ID"
+}
+
+variable "do_spaces_secret_key" {
+  type        = string
+  description = "DigitalOcean Spaces Secret Key"
+}
+
+variable "project_name" {
   type        = string
   description = "Short name of the project, will be used to prefix created resources"
 }
 
-variable "staging_domain" {
-  type = string
-}
-
-variable "production_domain" {
-  type = string
-}
-
-#
-# Elastic Beanstalk configuration
-# concepts: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.html
-#
-variable "beanstalk_platform" {
+variable "container_registry_name" {
   type        = string
-  description = "The Elastic Beanstalk platform to use. This needs to be a Docker platform (Linux, not ECS). If upgrade is available please ensure the EC2 AMI and deployment strategy is compatible. https://docs.aws.amazon.com/elasticbeanstalk/latest/platforms/platforms-supported.html#platforms-supported.docker"
-  default     = "64bit Amazon Linux 2 v3.6.0 running Docker"
+  description = "Name of DO container registry"
 }
 
-variable "beanstalk_tier" {
+variable "postgres_size" {
   type        = string
-  description = "The Elastic Beanstalk tier to use. This needs to be WebServer"
-  default     = "WebServer"
+  description = "DigitalOcean PostgreSQL size"
 }
 
-#
-# EC2 configuration
-#
-variable "ec2_instance_type" {
+variable "postgres_db_name" {
   type        = string
-  description = "The type of EC2 instance to launch"
+  description = "Name of PostgreSQL database"
 }
 
-#
-# RDS configuration
-#
-variable "rds_instance_class" {
+variable "do_app_instance" {
   type        = string
-  description = "Instance type of Aurora PostgreSQL server"
+  description = "DigitalOcean Droplet size"
+  default     = "basic-xs"
 }
 
-variable "rds_engine_version" {
-  type        = string
-  description = "RDS Database engine version"
-}
-
-variable "rds_instance_count" {
+variable "do_app_instance_count" {
   type        = number
+  description = "Number of instances to create"
   default     = 1
-  description = "Number of Aurora PostgreSQL instances before autoscaling"
 }
 
-variable "rds_log_retention_period" {
-  type        = number
-  default     = 1
-  description = "Time in days to keep log files in cloud watch"
-}
-
-variable "rds_backup_retention_period" {
-  type        = number
-  default     = 7
-  description = "Time in days to keep db backups"
+variable "do_app_image_tag" {
+  type        = string
+  description = "Tag of image from DO container registry"
 }

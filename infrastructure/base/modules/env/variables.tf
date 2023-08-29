@@ -1,13 +1,9 @@
-variable "aws_region" {
+variable "do_region" {
   type        = string
-  description = "AWS region"
+  description = "DigitalOcean Region"
 }
 
-variable "domain" {
-  type = string
-}
-
-variable "project" {
+variable "project_name" {
   type        = string
   description = "Short name of the project, will be used to prefix created resources"
 }
@@ -17,60 +13,30 @@ variable "environment" {
   description = "Name of the environment, will be used to prefix created resources"
 }
 
-variable "vpc" {
-}
-
-variable "tags" {
-  default     = {}
-  description = "Additional tags to add to resources"
-}
-
-variable "subnet_ids" {
-}
-
-variable "availability_zones" {
-  type = list(string)
-}
-
-variable "beanstalk_platform" {
+variable "do_app_instance" {
   type        = string
-  description = "The Elastic Beanstalk platform to use"
+  description = "DigitalOcean Droplet size"
+  default     = "basic-xs"
 }
 
-variable "beanstalk_tier" {
+variable "postgres_size" {
   type        = string
-  description = "The Elastic Beanstalk tier to use"
+  description = "DigitalOcean PostgreSQL size"
+  default     = "db-s-1vcpu-1gb"
 }
 
-variable "ec2_instance_type" {
+variable "postgres_db_name" {
   type        = string
-  description = "EC2 instance type for the server"
+  description = "Name of PostgreSQL database"
 }
 
-variable "rds_backup_retention_period" {
+variable "do_app_instance_count" {
   type        = number
-  description = "Number of days to retain backup for the database"
-  default     = 7
-}
-
-variable "rds_log_retention_period" {
-  type        = number
-  description = "Number of days to retain logs in Cloud Watch"
-  default     = 30
-}
-
-variable "rds_engine_version" {
-  type        = string
-  description = "RDS Database engine version"
-}
-
-variable "rds_instance_count" {
-  type        = number
-  description = "Number of permanent RDS instances"
+  description = "Number of instances to create"
   default     = 1
 }
 
-variable "rds_instance_class" {
+variable "do_app_image_tag" {
   type        = string
-  description = "RDS instance type class"
+  description = "Tag of image from DO container registry"
 }
