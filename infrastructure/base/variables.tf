@@ -65,3 +65,9 @@ variable "ga_tracking_id" {
   default     = ""
   description = "Google Analytics tracking id"
 }
+
+variable "mapbox_api_token" {
+  type        = string
+  default     = ""
+  description = "MAPBOX api id"
+}

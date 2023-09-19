@@ -93,11 +93,12 @@ locals {
 
   }
   staging_client_env = {
-    NEXT_PUBLIC_URL            = module.staging.app_url
-    NEXT_PUBLIC_ENVIRONMENT    = "production"
-    NEXT_PUBLIC_API_URL        = "${module.staging.app_url}/cms/api"
-    NEXT_PUBLIC_GA_TRACKING_ID = var.ga_tracking_id
-    LOG_LEVEL                  = "info"
+    NEXT_PUBLIC_URL              = module.staging.app_url
+    NEXT_PUBLIC_ENVIRONMENT      = "production"
+    NEXT_PUBLIC_API_URL          = "${module.staging.app_url}/cms/api"
+    NEXT_PUBLIC_GA_TRACKING_ID   = var.ga_tracking_id
+    NEXT_PUBLIC_MAPBOX_API_TOKEN = var.mapbox_api_token
+    LOG_LEVEL                    = "info"
   }
 }
 
