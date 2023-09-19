@@ -33,6 +33,13 @@ resource "digitalocean_app" "app" {
       instance_count     = var.do_app_instance_count
       instance_size_slug = var.do_app_instance
 
+      ##### FIRST RUN #####
+      ##### Uncomment the git block and comment image block if container repository does not have an image yet #####
+#       git {
+#         branch = "main"
+#         repo_clone_url = "https://github.com/digitalocean/sample-dockerfile.git"
+#       }
+
       image {
         registry_type = "DOCR"
         repository    = "${var.project_name}-${var.environment}-client"
@@ -51,6 +58,13 @@ resource "digitalocean_app" "app" {
       instance_count     = var.do_app_instance_count
       instance_size_slug = var.do_app_instance
 
+      ##### FIRST RUN #####
+      ##### Uncomment the git block and comment image block if container repository does not have an image yet #####
+#       git {
+#         branch = "main"
+#         repo_clone_url = "https://github.com/digitalocean/sample-dockerfile.git"
+#       }
+
       image {
         registry_type = "DOCR"
         repository    = "${var.project_name}-${var.environment}-cms"
@@ -58,28 +72,8 @@ resource "digitalocean_app" "app" {
       }
 
       routes {
-        path                 = "/admin"
-        preserve_path_prefix = true
-      }
-      routes {
-        path                 = "/api"
-        preserve_path_prefix = true
-      }
-      routes {
-        path                 = "/content-manager"
-        preserve_path_prefix = true
-      }
-      routes {
-        path                 = "/documentation"
-        preserve_path_prefix = true
-      }
-      routes {
-        path                 = "/i18n"
-        preserve_path_prefix = true
-      }
-      routes {
-        path                 = "/plugins"
-        preserve_path_prefix = true
+        path                 = "/cms"
+        preserve_path_prefix = false
       }
     }
   }

@@ -22,20 +22,18 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Extract branch name
         shell: bash
-        run: |
-          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-          echo "##[set-output name=branch-upper;]$(echo ${GITHUB_REF#refs/heads/} | tr a-z A-Z )"
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
         id: extract_branch
 
       - name: Copy env variables to docker
         env:
-          ENVIRONMENT: ${{ steps.extract_branch.outputs.branch == 'main' && 'PROD' || 'STAGE' }}
+          ENVIRONMENT: ${{ steps.extract_branch.outputs.branch == 'main' && 'PROD' || 'STAGING' }}
         run: |
-          echo "${{ secrets[format('CLIENT_{0}_ENV_FILE', env.ENVIRONMENT)] }}" > client/.env.local
+          echo "${{ secrets[format('{0}_CLIENT_ENV_FILE', env.ENVIRONMENT)] }}" > client/.env.local
 
       - name: Build and tag Client image
         env:
@@ -62,20 +60,18 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Extract branch name
         shell: bash
-        run: |
-          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-          echo "##[set-output name=branch-upper;]$(echo ${GITHUB_REF#refs/heads/} | tr a-z A-Z )"
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
         id: extract_branch
 
       - name: Copy env variables to docker
         env:
-          ENVIRONMENT: ${{ steps.extract_branch.outputs.branch == 'main' && 'PROD' || 'STAGE' }}
+          ENVIRONMENT: ${{ steps.extract_branch.outputs.branch == 'main' && 'PROD' || 'STAGING' }}
         run: |
-          echo "${{ secrets[format('CMS_{0}_ENV_FILE', env.ENVIRONMENT)] }}" > cms/.env
+          echo "${{ secrets[format('{0}_CMS_ENV_FILE', env.ENVIRONMENT)] }}" > cms/.env
 
       - name: Build and tag CMS image
         env:
